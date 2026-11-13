@@ -149,6 +149,24 @@
   </div>
 </section>
 
+<section class="video-band">
+  <div class="wrap video-wrap">
+    <div class="video-text">
+      <span class="eyebrow">Video</span>
+      <h2>See the TTC3000-R8G at work</h2>
+      <p>A short product video of the ANTestify TTC3000-R8G Integrated Testing System, our full-function model for radiation, circuit, PIM and RET testing.</p>
+      <a class="arrow-link" href="https://www.youtube.com/watch?v=DuWS2S8B1Vs" target="_blank" rel="noopener">Watch on YouTube</a>
+    </div>
+    <div class="video-frame">
+      <button class="yt-facade" type="button" data-yt="DuWS2S8B1Vs" aria-label="Play video: TTC3000-R8G Product">
+        <img src="assets/img/system-photo-crop.jpg" width="1400" height="758" alt="" loading="lazy">
+        <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.3.3 34 .3 34 .3s-21.3 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.7 47.7 34 47.7 34 47.7s21.3 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#e00"/><path d="M27 34.3 45 24 27 13.7z" fill="#fff"/></svg></span>
+        <span class="yt-note">Plays from YouTube</span>
+      </button>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap case-b">
     <figure><img src="assets/img/refurbish-before-after.jpg" width="755" height="331" alt="Decommissioned antennas before and after refurbishment" loading="lazy"></figure>
@@ -301,6 +319,18 @@
     // Close the language menu when clicking elsewhere.
     var m = document.querySelector('.lang-menu');
     document.addEventListener('click', function (e) { if (!m.contains(e.target)) m.removeAttribute('open'); });
+    // Videos load from YouTube only after the visitor presses play (no third-party requests before that).
+    document.querySelectorAll('.yt-facade').forEach(function (f) {
+      f.addEventListener('click', function () {
+        var i = document.createElement('iframe');
+        i.src = 'https://www.youtube-nocookie.com/embed/' + f.dataset.yt + '?autoplay=1&rel=0';
+        i.title = f.getAttribute('aria-label') || 'Video';
+        i.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        i.allowFullscreen = true;
+        i.referrerPolicy = 'strict-origin-when-cross-origin';
+        f.replaceWith(i);
+      });
+    });
   })();
 </script>
 </body>

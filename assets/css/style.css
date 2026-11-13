@@ -548,3 +548,18 @@ html[lang="ru"] .hero-b h1 { font-size: clamp(1.6rem, 3vw, 2.35rem); }
   .hero-badge { padding: 10px 14px; }
   .v2 .stage { padding: 20px; }
 }
+
+/* Video band: click-to-play YouTube embed (nothing loads from YouTube until play) */
+.video-band { background: var(--navy-950); color: #c9d4ff; padding: 80px 0; }
+.video-band h2 { color: #fff; }
+.video-band .eyebrow { color: #9db5ff; }
+.video-band .arrow-link { color: #fff; }
+.video-wrap { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: center; }
+.video-frame { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; background: #000; box-shadow: 0 12px 40px rgba(0, 0, 0, .35); }
+.video-frame iframe, .yt-facade { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-facade { padding: 0; margin: 0; cursor: pointer; background: #000; display: block; }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; opacity: .82; transition: opacity .2s; }
+.yt-facade:hover img, .yt-facade:focus-visible img { opacity: 1; }
+.yt-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); line-height: 0; filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .4)); }
+.yt-note { position: absolute; right: 12px; bottom: 10px; font-size: .78rem; color: #fff; background: rgba(0, 0, 0, .55); padding: 3px 8px; border-radius: 4px; }
+@media (max-width: 880px) { .video-wrap { grid-template-columns: 1fr; gap: 28px; } .video-band { padding: 56px 0; } }

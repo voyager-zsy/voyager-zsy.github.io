@@ -361,6 +361,18 @@
     // Close the language menu when clicking elsewhere.
     var m = document.querySelector('.lang-menu');
     document.addEventListener('click', function (e) { if (!m.contains(e.target)) m.removeAttribute('open'); });
+    // Videos load from YouTube only after the visitor presses play (no third-party requests before that).
+    document.querySelectorAll('.yt-facade').forEach(function (f) {
+      f.addEventListener('click', function () {
+        var i = document.createElement('iframe');
+        i.src = 'https://www.youtube-nocookie.com/embed/' + f.dataset.yt + '?autoplay=1&rel=0';
+        i.title = f.getAttribute('aria-label') || 'Video';
+        i.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        i.allowFullscreen = true;
+        i.referrerPolicy = 'strict-origin-when-cross-origin';
+        f.replaceWith(i);
+      });
+    });
   })();
 </script>
 </body>
